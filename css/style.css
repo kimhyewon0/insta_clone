@@ -1,6 +1,7 @@
 /*float, inline, inline-block 사용하면 세로배치*/
 /*flex -> 정렬하고자 하는 대상의 부모에게 주는 속성!!*/
 
+
 .sprite_insta_icon{
     display: inline-block;
 	background: url('/imgs/background01.png') no-repeat -53px -235px;
@@ -214,8 +215,8 @@ body{
 
 #main_container .inner{
     width: 935px;
-    height: 500px;
-    
+/*    height: 500px;*/
+    position: relative;
 }
 
 .contents_box{
@@ -348,4 +349,89 @@ body{
     pointer-events: none;
     opacity: 0.6;
     /*클릭이 되면 안되게 해줌*/
+}
+
+.side_box{
+    width:293px;
+    height: 300px;
+    position: absolute;
+    /*부모 기준점이 반드시 있어야함 안그러면 꼭대기 까지 있다*/
+    right: 0;
+    top: 0;
+/*    background: aquamarine;*/
+}
+
+.side_box .user_profile{
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color:#262626
+}
+.side_box .detail .id{
+    margin-bottom: 5px;
+}
+.side_box .detail .ko_name{
+    font-size: 12px;
+    color:#999
+}
+
+.side_box .profile_thumb{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.side_box .profile_thumb img{
+    width: 100%;
+    height: 100%;
+}
+
+.side_box > article{
+    border: 1px solid rgba(0,0,0,0.09);
+    border-radius: 3px;
+    margin-bottom: 20px;
+    width: 291px;
+    font-size: 14px;
+    color: #262626;
+    font-weight: bold;
+    background: white
+}
+
+.side_box > article > header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    color: #999;
+}
+.side_box > article > header .more{
+    font-size: 12px;
+    color: #262626;
+    cursor: pointer;
+} 
+
+.thumb_user{
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.thumb_user .profile_thumb{
+    width: 34px;
+    height: 34px;
+}
+
+.thumb_user .time{
+    font-size: 10px;
+    letter-spacing: 0.2px;
+    color:#999;
+}
+
+.side_box .scroll_inner{
+    height: 182px;
+    overflow-x: hidden;
+    /* x축으로 스크롤 할 것이 아니기 때문에 hidden*/
+    overflow-y: auto;
 }
