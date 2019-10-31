@@ -5,3 +5,6 @@
 
 ## 10.29
 - contents box 완성
+
+## 10.31
+- side box 완성
