@@ -15,3 +15,4 @@
 
 ## 11.3
 - scroll event 추가
+- resize event 추가
