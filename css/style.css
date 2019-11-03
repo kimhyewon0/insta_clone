@@ -116,6 +116,12 @@ body{
     border-bottom: 1px solid rgba(0,0,0,0.1);/* 높이값이 없어서 아무것도 나오지 않음 -> 자식들에게 높이값 부여해야함 */
 }
 
+#header.on{
+    /* header에게 on이라는 클래스가 붙을 경우*/
+    /* 아래 조건으로 변경하겠다. */
+    position: fixed;
+}
+
 #header .inner{
     width: 975px;
     height: 77px;/* 높이값 부여 */
@@ -123,6 +129,12 @@ body{
     display: flex;
     justify-content: space-between; /* x축으로 가운데 정렬, 사이에 공간있음 */
     align-items: center; /* y축으로 가운데 정렬, 이 속성으로 인해서 header에 있는 모든 요소들이 중간에 놓이게됨 */
+    /* 스르륵 사라지는 기법 */
+    transition: all 1s;
+}
+
+#header.on .inner{
+    height: 52px;
 }
 
 #header .inner .logo > a{
@@ -149,9 +161,18 @@ body{
 #header .inner .logo div{
     vertical-align: middle; /*맨 위 로고요소들 동일선상에 배치*/
 }
-#header .inner .logo div:nth-child(2){
-    transform: translateY(2px)
+
+/* header에 on클래스가 붙었을 경우 div의 두번째 요소 설정하기 */
+#header.on .inner .logo div:nth-child(2){
+    opacity: 0;
+    transition:all 0.5s;
 }
+#header.on .inner .logo .sprite_insta_icon:after{
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+#header .inner .logo div:nth-child(2)
 
 #header .search_box{
     position: relative;
@@ -363,6 +384,13 @@ body{
     top: 0;
 /*    background: aquamarine;*/
 }
+
+.side_box.on{
+    /*fixed의 기준은 화면 기준임 */
+    position: fixed;
+    top:80px;
+}
+
 
 .side_box .user_profile{
     display: flex;
