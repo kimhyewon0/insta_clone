@@ -296,6 +296,35 @@ body{
     width:100%;
 }
 
+.contents .sprite_more_icon{
+    position: relative;
+}
+
+.contents .toggle_box{
+    text-align: center;
+    position: absolute;
+    right:0;
+    top:20px;
+    border: 1px solid rgba(0,0,0,0.09);
+    border-radius: 3px;
+    display: none;
+}
+
+.contents .sprite_more_icon.on .toggle_box{
+    display: block;
+}
+
+.contents .toggle_box > li{
+    padding: 5px 10px;
+    background: white;
+}
+
+.contents .toggle_box > li input{
+    border:none;
+    font-size: inherit;
+    /*부모의 폰트를 따라가게함*/
+}
+
 .contents .bottom_icons{
     display: flex;
     justify-content: space-between;

@@ -113,7 +113,21 @@ function delegationFunc(e){
         });
 
     }else if(elem.matches('[data-name="follow"]')){
-
+        $.ajax({
+            type: 'POST',
+            url: 'data/follow.json',
+            data:{
+                'pk':37,
+            },
+            dataType:'json',
+            success:function(response){
+                if(response.status){
+                    document.querySelector('input.follow').value = "팔로잉";
+                }else{
+                    document.querySelector('input.follow').value = "팔로워";
+                }
+            }
+        })
     }
 
     elem.classList.toggle('on');
@@ -149,7 +163,13 @@ function resizeFunc(){
     }
 }
 
-function scrollFucn(){
+function scrollFunc(){
+    let scrollHeight = pageYOffset + window.innerHeight;
+    let documentHeight = document.body.scrollHeight;
+
+    console.log('ScrollHeight : ' +scrollHeight)
+    console.log('documentHeight : ' + documentHeight)
+
     //스크롤 할때마다 위치를 출력해줌
     // console.log(pageYOffset);
     if (pageYOffset >= 10){
@@ -169,8 +189,41 @@ function scrollFucn(){
         // 고정된 left값을 삭제해주기 위함 -> 속성자체를 지우는게 편하다.
         sidebox.removeAttribute('style');
     }
+
+    if(scrollHeight >= documentHeight){
+        //페이지를 생성해줌 : ajax가 통신이 잘 되는지, 페이지가 얼마나나 남았는지 -> 어느정도 도달하면 스크롤 되지 않게 하기 위함
+        let page = document.querySelector('#page').value;
+        document.querySelector('#page').value = parseInt(page) + 1;
+        callMorePageAjax(page);
+        if (page > 5){
+            return;
+        }
+
+    }
 }
 
+function callMorePageAjax(page){
+    if (page > 5){
+        return;
+    }
+    $.ajax({
+        type:'POST',
+        url:'./post.html',
+        data:{
+            'page':page,
+        },
+        dataType:'html',
+        success: addMorePostAjax,
+        error:function (request, status, error) {
+            alert('문제가 발생했습니다.');
+        }
+    })
+}
+
+function addMorePostAjax(data){
+    //html을 어디다 뿌려줄 지 결정해줌
+    delegation.insertAdjacentHTML('beforeend',data);
+}
 setTimeout(function () {
     scrollTo(0,0)
 },100)
@@ -181,6 +234,6 @@ if(delegation){
 
 }
 window.addEventListener('resize',resizeFunc);
-window.addEventListener('scroll',scrollFucn);
+window.addEventListener('scroll',scrollFunc);
 
 
