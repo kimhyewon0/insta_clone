@@ -96,6 +96,21 @@ function delegationFunc(e){
         });
 
     }else if(elem.matches('[data-name="comment_delete"]')){
+        $.ajax({
+            type: 'POST',
+            url: 'data/delete.json',
+            data:{
+                'pk': 37,
+
+            },
+            dataType:'json',
+            success:function(response){
+                if(response.status){
+                    let comt = document.querySelector('.comment-detail');
+                    comt.remove();
+                }
+            }
+        });
 
     }else if(elem.matches('[data-name="follow"]')){
 
