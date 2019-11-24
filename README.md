@@ -1,7 +1,7 @@
 # insta_clone
 
 
-#FRONT
+# FRONT
 ## 10.28
 - header 부분 완성
 
