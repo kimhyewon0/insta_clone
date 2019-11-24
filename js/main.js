@@ -29,11 +29,12 @@ function delegationFunc(e){
     if(elem.matches('[data-name="heartbeat"]')){
         //클릭한 엘리먼트의 대상의 데이터 네임속성이 heartbeat라는 속성을 가지고 있을 때 이 문장이 실행됨
         console.log('하트');
+        let pk = elem.getAttribute('name');
 
         $.ajax({
             type: 'POST',
             url: 'data/like.json',
-            data: 37,
+            data: {pk},
             dataType: 'json',
             success: function(response){
 
@@ -50,6 +51,25 @@ function delegationFunc(e){
 
     }else if(elem.matches('[data-name="bookmark"]')){
         console.log('북마크');
+
+        //북마크부분의 name을 가져와서 pk로 지정해줌
+        let pk = elem.getAttribute('name');
+
+        $.ajax({
+            type: 'POST',
+            url: 'data/bookmark.json',
+            data: {pk},
+            dataType: 'json',
+            success: function(response){
+                let bookmarkCount = document.querySelector('#bookmark-count-37');
+                bookmarkCount.innerHTML = '북마크' + response.bookmark_count + '개';
+            },
+            error:function (request, status, error) {
+                alert('로그인이 필요합니다.');
+                window.location.replace('www.daum.net');
+            }
+        })
+
     }else if(elem.matches('[data-name="share"]')){
         console.log('공유');
     }else if(elem.matches('[data-name="more"]')){
