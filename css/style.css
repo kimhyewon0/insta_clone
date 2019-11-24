@@ -333,7 +333,12 @@ body{
 
 .contents .comment_container .comment{
     display: flex;
+    flex-direction: column;
     font-size: 14px;
+}
+
+.contents .comment_container .comment-detail{
+    display: flex;
 }
 
 .contents .comment_container .comment .nick_name{
@@ -378,7 +383,7 @@ body{
     transform: translateY(-50%);
     cursor: pointer;
     
-    pointer-events: none;
+    /*pointer-events: none;*/
     opacity: 0.6;
     /*클릭이 되면 안되게 해줌*/
 }

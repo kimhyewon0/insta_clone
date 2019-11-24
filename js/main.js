@@ -70,10 +70,35 @@ function delegationFunc(e){
             }
         })
 
-    }else if(elem.matches('[data-name="share"]')){
-        console.log('공유');
-    }else if(elem.matches('[data-name="more"]')){
-        console.log('더보기');
+    }else if(elem.matches('[data-name="comment"]')){
+        let content = document.querySelector('#add-comment-post-37 > input[type=text]').value;
+
+        //글자수 제한하기
+        if(content.length > 140){
+            alert('댓글은 최대 140자 입니다. 현재글자수' + content.length);
+            return;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: './comment.html', //데이터타입을 html으로 받을 것
+            data:{
+                'pk': 37,
+                'content': content,
+            },
+            dataType:'html',
+            success:function (data) {
+                document.querySelector('#comment-list-ajax-post-37').insertAdjacentHTML('afterbegin',data); //태그 자체를 추가하기
+            },
+            error:function (request, status, error) {
+                alert('문제가 발생했습니다.');
+            }
+        });
+
+    }else if(elem.matches('[data-name="comment_delete"]')){
+
+    }else if(elem.matches('[data-name="follow"]')){
+
     }
 
     elem.classList.toggle('on');
