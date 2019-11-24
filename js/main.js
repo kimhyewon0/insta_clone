@@ -29,11 +29,30 @@ function delegationFunc(e){
     if(elem.matches('[data-name="heartbeat"]')){
         //클릭한 엘리먼트의 대상의 데이터 네임속성이 heartbeat라는 속성을 가지고 있을 때 이 문장이 실행됨
         console.log('하트');
+
+        $.ajax({
+            type: 'POST',
+            url: 'data/like.json',
+            data: 37,
+            dataType: 'json',
+            success: function(response){
+
+                let likecount = document.querySelector('#like-count-37');
+                likecount.innerHTML = "좋아요" + response.like_count + "개";
+            },
+            //ajax가 먹히지 않을 경우
+            error:function (request, status, error) {
+                alert('로그인이 필요합니다.');
+                window.location.replace('www.daum.net');
+            }
+        })
+
+
     }else if(elem.matches('[data-name="bookmark"]')){
         console.log('북마크');
     }else if(elem.matches('[data-name="share"]')){
         console.log('공유');
-    }else if(elem.matches('[data-name="moer"]')){
+    }else if(elem.matches('[data-name="more"]')){
         console.log('더보기');
     }
 
