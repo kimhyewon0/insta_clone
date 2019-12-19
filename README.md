@@ -29,5 +29,5 @@
 - (3) ajax 댓글삭제 기능 구현
 - (4) ajax 팔로우 기능 구현, ajax 무한스크롤 기능 구현
 
-## 12.19
-hello world
+## 2019.12.19
+helloworld!!
