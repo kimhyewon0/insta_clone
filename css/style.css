@@ -1,0 +1,613 @@
+/*float, inline, inline-block 사용하면 세로배치*/
+/*flex -> 정렬하고자 하는 대상의 부모에게 주는 속성!!*/
+
+
+.sprite_insta_icon{
+    display: inline-block;
+	background: url('/imgs/background01.png') no-repeat -53px -235px;
+	width: 22px;
+	height: 22px;
+}
+
+.sprite_write_logo {
+    display: inline-block;
+	background: url('/imgs/background01.png') no-repeat -94px -72px;
+	width: 103px;
+	height: 29px;
+}
+
+.sprite_compass_icon{
+    display: inline-block;
+	background: url('/imgs/background01.png') no-repeat -130px -286px;
+	width: 23px;
+	height: 23px;
+}
+
+.sprite_user_icon_outline{
+    display: inline-block;
+	background: url('/imgs/background01.png') no-repeat -272px -182px;
+	width: 22px;
+	height: 24px;
+}
+.sprite_heart_icon_outline{
+    display: inline-block;
+	background: url('/imgs/background01.png') no-repeat -52px -261px;
+	width: 24px;
+	height: 22px;
+}
+.sprite_small_search_icon{
+    display: inline-block;
+	background: url('/imgs/background01.png') no-repeat -337px -246px;
+	width: 10px;
+	height: 10px;
+}
+
+.sprite_more_icon{
+    display: inline-block;
+	background: url('/imgs/background01.png') no-repeat -301px -218px;
+	width: 15px;
+	height: 3px;
+}
+
+.sprite_bubble_icon{
+    display: inline-block;
+	background: url('/imgs/background01.png') no-repeat -239px -202px;
+	width: 24px;
+	height: 24px;
+}
+.sprite_share_icon{
+	background: url('/imgs/background01.png') no-repeat -324px -52px;
+	width: 21px;
+	height: 24px;
+}
+.sprite_bookmark_outline.on{
+    display: inline-block;
+	background: url('/imgs/background01.png') no-repeat -159px -286px;
+	width: 19px;
+	height: 24px;
+}
+
+.sprite_bookmark_outline{
+    display: inline-block;
+    background: url('/imgs/background01.png') no-repeat -237px -286px;
+    width: 19px;
+    height: 24px;
+}
+
+.sprite_small_heart_icon_outline{
+    display: inline-block;
+	background: url('/imgs/background01.png') no-repeat -323px -274px;
+	width: 12px;
+	height: 11px;
+}
+.sprite_heart_icon_outline.on{
+    background: url("/imgs/background01.png") no-repeat -26px -261px;
+}
+.sprite_camera_icon{
+    display: inline-block;
+	background: url('/imgs/background01.png') no-repeat -271px -104px;
+	width: 24px;
+	height: 22px;
+}
+.sprite_insta_big_icon{
+    display: inline-block;
+	background: url('/imgs/background01.png') no-repeat -187px -202px;
+	width: 23px;
+	height: 23px;
+}
+.sprite_plus_icon{
+    display: inline-block;
+	background: url('/imgs/background01.png') no-repeat -187px -202px;
+	width: 23px;
+	height: 23px;
+}
+.m_text{
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.s_text{
+    font-size: 12px;
+}
+
+body{
+    background: #fafafa;
+}
+
+#header{
+    width: 100%;
+    position: absolute; /* 공중에 띄우기 - x축 혹은 y축 하나를 꼭 써야함 */
+    left : 0;
+    top: 0;
+    z-index: 999; /* 가장 위에있어야함 */
+    background: white; 
+    border-bottom: 1px solid rgba(0,0,0,0.1);/* 높이값이 없어서 아무것도 나오지 않음 -> 자식들에게 높이값 부여해야함 */
+}
+
+#header.on{
+    /* header에게 on이라는 클래스가 붙을 경우*/
+    /* 아래 조건으로 변경하겠다. */
+    position: fixed;
+}
+
+#header .inner{
+    width: 975px;
+    height: 77px;/* 높이값 부여 */
+    margin: 0px auto; /* 가운데 정렬 */
+    display: flex;
+    justify-content: space-between; /* x축으로 가운데 정렬, 사이에 공간있음 */
+    align-items: center; /* y축으로 가운데 정렬, 이 속성으로 인해서 header에 있는 모든 요소들이 중간에 놓이게됨 */
+    /* 스르륵 사라지는 기법 */
+    transition: all 1s;
+}
+
+#header.on .inner{
+    height: 52px;
+}
+
+#header .inner .logo > a{
+    color: transparent;/*색상을 투명하게 만들기*/
+
+}
+#header .inner .logo .sprite_insta_icon{
+    /*가상선택자 사용 이전에 넣어야 하는 값*/
+    position: relative;
+    margin-right: 30px;
+}
+
+#header .inner .logo .sprite_insta_icon:after{
+    /* : -> 가상선택자, 바를 만들때 사용 여기선 로고와 로고 사이에 있는 바*/
+    content: '';
+    width: 1px;
+    height: 28px;
+    background: #000;
+    position: absolute; /*부모를 기준으로 자리를 잡음 -> 부모가 absolute, relative,fixed 를 반드시 사용해야함 */
+    right: -15px;
+    top: -4px;
+    
+}
+#header .inner .logo div{
+    vertical-align: middle; /*맨 위 로고요소들 동일선상에 배치*/
+}
+
+/* header에 on클래스가 붙었을 경우 div의 두번째 요소 설정하기 */
+#header.on .inner .logo div:nth-child(2){
+    opacity: 0;
+    transition:all 0.5s;
+}
+#header.on .inner .logo .sprite_insta_icon:after{
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+#header .inner .logo div:nth-child(2)
+
+#header .search_box{
+    position: relative;
+}
+
+#search-field{
+    width: 185px;
+    height: 28px;
+    background: #fafafa;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+    padding: 3px 30px;
+    color: #999;
+    font-weight: 400;
+    text-align: left;
+    font-size: 14px;
+    outline: none; /*바깥에 있는 선을 없애줌*/
+}
+
+#search-field::placeholder{
+    font-size: 0px;
+}/*처음에는 안보였다가 포커스 되면 보이게 하는 방법*/
+
+#search-filed:focus::placeholder{
+    font-size: 14px;
+}/*처음에는 안보였다가 포커스 되면 보이게 하는 방법*/
+
+#search-field:focus ~ .fake_field > span:nth-child(1){
+    /*근처에 있는 친구중에서 fake_field인 요소들을 의미*/
+    transform: translate(-105px);
+}
+
+#search-field:focus ~ .fake_field > span:nth-child(2){
+    /*근처에 있는 친구중에서 fake_field인 요소들을 의미*/
+    display: none;
+}
+
+#header .search_box .fake_field{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+     /* 위 세줄은 absolute를 이용한 이후에 가운데 정렬을 하는 방법임*/
+    pointer-events: none; /*포인터 인식안되게 하는 방법*/
+}
+
+#header .right_icons{
+    width: 132px;
+    display: flex;
+    justify-content: space-between;
+    /*margin값을 일일이 주지 않아도 flex 속성으로 인해 알아서 정렬함*/
+}
+
+#header .right_icons > div{
+    
+}
+
+#main_container{
+    padding-top: 130px;
+    /* 컨텐츠를 밀 때는 padding 이용한다 margin 병합현상 일어날 수 있어서*/
+    display: flex;
+    justify-content: center;
+}
+
+#main_container .inner{
+    width: 935px;
+/*    height: 500px;*/
+    position: relative;
+}
+
+.contents_box{
+    
+}
+
+.contents{
+    max-width: 614px;
+/*    height: 500px;*/
+    border: 1px solid rgba(0,0,0,0.09);
+    border-radius: 3px;
+    margin-bottom: 60px;
+    background: white;
+}
+
+.contents .top{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.contents .top .profile_img{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+.contents .top .profile_img img{
+    width:100%; /*없으면 이미지가 나오지 않음*/
+}
+
+.contents .top .user_container{
+    display: flex;
+}
+
+.contents .img_section{
+    overflow: hidden; 
+    /*자식이 부모에게서 넘치지 못하게 함*/
+}
+
+
+.contents .img_section img{
+    width:100%;
+}
+
+.contents .sprite_more_icon{
+    position: relative;
+}
+
+.contents .toggle_box{
+    text-align: center;
+    position: absolute;
+    right:0;
+    top:20px;
+    border: 1px solid rgba(0,0,0,0.09);
+    border-radius: 3px;
+    display: none;
+}
+
+.contents .sprite_more_icon.on .toggle_box{
+    display: block;
+}
+
+.contents .toggle_box > li{
+    padding: 5px 10px;
+    background: white;
+}
+
+.contents .toggle_box > li input{
+    border:none;
+    font-size: inherit;
+    /*부모의 폰트를 따라가게함*/
+}
+
+.contents .bottom_icons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.contents .bottom_icons .left_icons{
+    display: flex;
+}
+
+.contents .bottom_icons .left_icons > div{
+    margin-right: 10px;
+    
+    /*커서를 포인터로 바꿔줌*/
+    cursor: pointer;
+}
+
+.contents .bottom_icons .right_icons > div{
+    cursor: pointer;
+}
+
+.contents .likes{
+    padding: 5px 20px;
+    color: #262626
+}
+
+
+.contents .comment_container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+}
+
+.contents .comment_container .comment{
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+}
+
+.contents .comment_container .comment-detail{
+    display: flex;
+}
+
+.contents .comment_container .comment .nick_name{
+    margin-right: 10px;
+}
+
+.contents .timer{
+    font-size: 10px;
+    letter-spacing: 0.2px;
+    color: #999;
+    border-bottom: 1px solid rgba(0,0,0,0.09);
+    padding: 10px 20px;
+    
+}
+
+
+.contents .comment_field{
+    min-height: 56px; 
+    /*더 줄지 않게 해줌*/
+    padding: 0 20px;
+    position: relative;
+}
+
+
+.contents .comment_field input{
+    width: 100%;
+    height:56px;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+.contents .comment_field input:focus ~ .upload_btn{
+    pointer-events: initial;
+    opacity: 1;
+}
+
+.contents .comment_field .upload_btn{
+    color: #3897f0;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    
+    /*pointer-events: none;*/
+    opacity: 0.6;
+    /*클릭이 되면 안되게 해줌*/
+}
+
+.side_box{
+    width:293px;
+    height: 300px;
+    position: absolute;
+    /*부모 기준점이 반드시 있어야함 안그러면 꼭대기 까지 있다*/
+    right: 0;
+    top: 0;
+/*    background: aquamarine;*/
+}
+
+.side_box.on{
+    /*fixed의 기준은 화면 기준임 */
+    position: fixed;
+    top:80px;
+}
+
+
+.side_box .user_profile{
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color:#262626
+}
+.side_box .detail .id{
+    margin-bottom: 5px;
+}
+.side_box .detail .ko_name{
+    font-size: 12px;
+    color:#999
+}
+
+.side_box .profile_thumb{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+}
+
+.side_box .profile_thumb img{
+    width: 100%;
+    height: 100%;
+}
+
+.side_box > article{
+    border: 1px solid rgba(0,0,0,0.09);
+    border-radius: 3px;
+    margin-bottom: 20px;
+    width: 291px;
+    font-size: 14px;
+    color: #262626;
+    font-weight: bold;
+    background: white
+}
+
+.side_box > article > header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    color: #999;
+}
+.side_box > article > header .more{
+    font-size: 12px;
+    color: #262626;
+    cursor: pointer;
+} 
+
+.thumb_user{
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.thumb_user .profile_thumb{
+    width: 34px;
+    height: 34px;
+}
+
+.thumb_user .time{
+    font-size: 10px;
+    letter-spacing: 0.2px;
+    color:#999;
+}
+
+.side_box .scroll_inner{
+    height: 182px;
+    overflow-x: hidden;
+    /* x축으로 스크롤 할 것이 아니기 때문에 hidden*/
+    overflow-y: auto;
+}
+
+.hidden_menu{
+    display: none;
+    width: 600px;
+/*    height: 100px;*/
+/*    background: red;*/
+    position: absolute;
+    left: 50%;
+    top: 100px;
+    transform: translateX(-50%);
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.09);
+    border-radius: 3px;
+/*    display: none;*/
+}
+
+/*높이 값을 자식에게 넘겨줌*/
+.hidden_menu .scroll_inner{
+    height: 100px;
+    width: auto;
+    overflow-x: auto;
+    overflow-y:hidden;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.hidden_menu .scroll_inner .user{
+    width: 80px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 15px;
+    /*justify 이건 좌우로 공간을 주는게 아니라 위아래로 준다*/
+    /*왜냐하면 flex를 column으로 주었기 때문*/
+    justify-content: space-between;
+}
+.hidden_menu .scroll_inner .user .id{
+    font-size: 12px;
+    color: #262626;
+}
+.hidden_menu .thumb_img{
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+
+.hidden_menu .thumb_img img{
+    width: 100%;
+    height: 100%;
+}
+/* 반응형 웹사이트를 위한 설정 */
+/* width를 설정해줬던 모든 태그들을 가져온다. */
+@media screen and (max-width:1000px){
+    #header .inner{
+        /* 975/1000*100 을 해주면 됨*/
+        width: 97.5%;
+    }
+    #main_container{
+        padding-top: 220px;
+    }
+    
+    #main_container .inner{
+        width: 93.5%;
+    }
+/* 이 부분은 추후에 js로 수정 할 예정 -> 위에서 width를 max-with로 주어지게 했다
+    .contents{
+        width: 614px;
+        height: 500px;
+        border: 1px solid rbga(0,0,0,0.09);
+        border-radius: 3px;
+        margin-bottom: 60px;
+        background: white;
+    }
+*/
+    /* 1000px이하로 줄어들 때 스토리 사라짐 -> 박스가 왼쪽정렬되어있으니까 가운데 정렬을 해준다*/
+    .contents_box{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    /* 1000px 보다 줄어들 경우 스토리는 사라지게 함*/
+    .side_box{
+        display: none;
+    }
+    .hidden_menu{
+        display: block;
+    }
+
+}
+
+@media screen and (max-width:650px){
+    #header .search_box{
+        display: none;
+    }
+    .hidden_menu{
+        width: 95%;
+    }
+
+}
